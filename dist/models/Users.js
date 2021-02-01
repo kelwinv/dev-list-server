@@ -8,10 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Users = void 0;
 const typeorm_1 = require("typeorm");
-const Repos_1 = require("./Repos");
+const Repos_1 = __importDefault(require("./Repos"));
 let Users = class Users {
 };
 __decorate([
@@ -35,13 +37,13 @@ __decorate([
     __metadata("design:type", Number)
 ], Users.prototype, "public_repos", void 0);
 __decorate([
-    typeorm_1.OneToMany(() => Repos_1.Repos, repos => repos.Users, {
+    typeorm_1.OneToMany(() => Repos_1.default, repos => repos.Users, {
         cascade: ['insert', 'update']
     }),
     typeorm_1.JoinColumn({ name: 'user_id' }),
     __metadata("design:type", Array)
 ], Users.prototype, "repos", void 0);
 Users = __decorate([
-    typeorm_1.Entity()
+    typeorm_1.Entity('users')
 ], Users);
-exports.Users = Users;
+exports.default = Users;

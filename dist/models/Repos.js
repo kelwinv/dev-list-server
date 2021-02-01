@@ -8,10 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Repos = void 0;
 const typeorm_1 = require("typeorm");
-const Users_1 = require("./Users");
+const Users_1 = __importDefault(require("./Users"));
 let Repos = class Repos {
 };
 __decorate([
@@ -39,11 +41,11 @@ __decorate([
     __metadata("design:type", Number)
 ], Repos.prototype, "stargazers_count", void 0);
 __decorate([
-    typeorm_1.ManyToOne(() => Users_1.Users, user => user.repos),
+    typeorm_1.ManyToOne(() => Users_1.default, user => user.repos),
     typeorm_1.JoinColumn({ name: 'user_id' }),
-    __metadata("design:type", Users_1.Users)
+    __metadata("design:type", Users_1.default)
 ], Repos.prototype, "Users", void 0);
 Repos = __decorate([
-    typeorm_1.Entity()
+    typeorm_1.Entity('repos')
 ], Repos);
-exports.Repos = Repos;
+exports.default = Repos;

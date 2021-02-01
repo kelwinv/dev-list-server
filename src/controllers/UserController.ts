@@ -3,7 +3,7 @@ import { getRepository } from "typeorm";
 
 import axios from "axios";
 
-import { Users } from "../models/Users";
+import Users from "../models/Users";
 
 interface IUser {
   id: number;
@@ -25,7 +25,6 @@ interface IRepo {
 export default {
   async index(req: Request, res: Response) {
     const userdb = getRepository(Users);
-
     const users = await userdb.find();
 
     return res.json(users);
@@ -72,7 +71,7 @@ export default {
 
     const user = await userdb.findOne({
       where: [{ id }],
-      relations: ['repos']
+      relations: ["repos"],
     });
 
     return res.json(user);

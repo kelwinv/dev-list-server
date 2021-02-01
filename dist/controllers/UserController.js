@@ -5,10 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 const axios_1 = __importDefault(require("axios"));
-const Users_1 = require("../models/Users");
+const Users_1 = __importDefault(require("../models/Users"));
 exports.default = {
     async index(req, res) {
-        const userdb = typeorm_1.getRepository(Users_1.Users);
+        const userdb = typeorm_1.getRepository(Users_1.default);
         const users = await userdb.find();
         return res.json(users);
     },
@@ -33,17 +33,17 @@ exports.default = {
             public_repos,
             repos: repositories,
         };
-        const userdb = typeorm_1.getRepository(Users_1.Users);
+        const userdb = typeorm_1.getRepository(Users_1.default);
         const user = userdb.create(Userdata);
         await userdb.save(user);
         return res.json(user);
     },
     async show(req, res) {
         const { id } = req.params;
-        const userdb = typeorm_1.getRepository(Users_1.Users);
+        const userdb = typeorm_1.getRepository(Users_1.default);
         const user = await userdb.findOne({
             where: [{ id }],
-            relations: ['repos']
+            relations: ["repos"],
         });
         return res.json(user);
     },

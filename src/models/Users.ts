@@ -1,8 +1,8 @@
 import { Entity, PrimaryColumn, Column, OneToMany, JoinColumn } from "typeorm";
-import { Repos } from "./Repos";
+import Repos from "./Repos";
 
-@Entity()
-export class Users {
+@Entity('users')
+export default class Users {
   @PrimaryColumn()
   id: number;
 
